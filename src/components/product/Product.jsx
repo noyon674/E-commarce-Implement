@@ -5,9 +5,7 @@ import { add_to_cart } from '../../redux/action/action';
 
 function Product(props) {
     const dispatch = useDispatch();
-
     const { title, image, price, id } = props;
-    console.log(props)
     const cartList = useSelector(state => state.cartList);
     const [inCart, setInCart] = useState(false);
 

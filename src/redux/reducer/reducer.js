@@ -3,7 +3,8 @@ import { ADD_TO_CART, DECRESASE_QUANTITY, DELETE_FROM_CART, INCREASE_QUANTITY, L
 const initialState = {
     isAuthenticated: false,
     users: [],
-    cartList:[]
+    cartList:[],
+    totalCartItem: 0
 }
 
 export const reducer = (state=initialState, action)=>{
@@ -22,6 +23,7 @@ export const reducer = (state=initialState, action)=>{
         }
         case ADD_TO_CART: return{
             ...state,
+            totalCartItem: state.totalCartItem + 1,
             cartList: [...state.cartList, action.payload]
         }
         case INCREASE_QUANTITY: return{
@@ -38,12 +40,14 @@ export const reducer = (state=initialState, action)=>{
         }
         case DELETE_FROM_CART: return{
             ...state,
+            totalCartItem: state.totalCartItem - 1,
             cartList:  state.cartList.filter(item=>item.id != action.payload)
         }
         case RESET_STORE: return{
             isAuthenticated: false,
             users: [],
-            cartList: []
+            cartList: [],
+            totalCartItem: 0
         }
         default: return state
     }

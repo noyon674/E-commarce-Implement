@@ -5,7 +5,7 @@ import Products from '../products/Products'
 function Main() {
   return (
     <div>
-        <Navbar />
+        <Navbar/>
         <Products />
     </div>
   )

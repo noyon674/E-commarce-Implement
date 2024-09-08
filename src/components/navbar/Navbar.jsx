@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout_success, reset } from '../../redux/action/action';
 
 function Navbar() {
+    const totalItem = useSelector(state=>state.totalCartItem)
     const dispatch = useDispatch()
     const handleLogout = (e)=>{
         dispatch(logout_success(false))
@@ -15,7 +16,7 @@ function Navbar() {
   return (
     <div className='navbar'>
         <div className="left">
-            <a href="">Furni<span>Flex</span></a>
+            <a href="/">Furni<span>Flex</span></a>
         </div>
         <div className="middle">
             <ul>
@@ -28,6 +29,7 @@ function Navbar() {
         <div className="right">
             <a href="" onClick={handleLogout}>logout</a>
             <a href="/cart"><FaShoppingCart /></a>
+            <span className='notify'>{totalItem}</span>
             {/* <a href="" className='ms-2' onClick={handleReset}>reset</a> */}
         </div>
     </div>

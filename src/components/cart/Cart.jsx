@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Navbar from '../navbar/Navbar'
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux'
 import { RxCross1 } from "react-icons/rx";
 import { Card } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
 import './cart.scss'
 import { 
     decrease_quantity, 
@@ -14,7 +15,6 @@ import {
 function Cart() {
     const dispatch = useDispatch()
     const cartList = useSelector(state=>state.cartList)
-    
     const handleIncress = ({id, totalPrice})=>{
         dispatch(increase_quantity(id))
         //calbil(totalPrice)
@@ -26,8 +26,21 @@ function Cart() {
 
     const handleDelete = (id)=>{
         dispatch(delete_from_cart(id))
+        toast.error('Removed item!', {
+            position: "top-right",
+            autoClose: 2000,
+            closeOnClick: true,
+            theme: "colored",
+            });
     }
-
+    const placeOrder = ()=>{
+        toast.success('Order Placed successfully!', {
+            position: "top-right",
+            autoClose: 2000,
+            closeOnClick: true,
+            theme: "colored",
+            });
+    }
     let sum=0
     const calbil =(totalCost)=>{
         return sum+=totalCost
@@ -35,7 +48,7 @@ function Cart() {
   return (
     <div>
         <div className="top">
-            <Navbar />
+            <Navbar/>
         </div>
         <div className="middle">
             <div className="left">
@@ -107,13 +120,14 @@ function Cart() {
                                 </p>
                             </Card.Footer >
                             <div className="btn -center">
-                                <button className='btn btn-dark' onClick={console.log('order placed')}>Place order</button>
+                                <button className='btn btn-dark' onClick={placeOrder}>Place order</button>
                             </div>
                         </Card>
                     })
                 }
             </div>
         </div>
+        <ToastContainer />
     </div>
   )
 }
