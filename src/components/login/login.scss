@@ -1,0 +1,46 @@
+.login{
+    width: 35%;
+    margin: auto;
+    background-color:rgb(241, 236, 236);
+    border-radius: 10px;
+    padding:50px 0;
+    margin-top: 100px;
+
+    h4{
+        text-align: center;
+        font-weight: 600;
+        span{
+            color: cornflowerblue;
+        }
+    }
+    p{
+        text-align: center;
+    }
+
+    .input{
+        width: 70%;
+        margin: auto;
+
+        input{
+            width: 100%;
+            margin: 10px 0;
+            padding: 5px 10px;
+            border-radius: 2px;
+            outline: none;
+            border: none;
+        }
+
+        button{
+            width: 100%;
+            margin-top: 20px;
+        }
+    }
+
+    .bottomText{
+        margin-top: 20px;
+        a:hover{
+            text-decoration: none;
+        }
+    }
+
+}
