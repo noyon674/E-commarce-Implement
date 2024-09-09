@@ -3,6 +3,8 @@ import './registration.scss'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { registration_success } from '../../redux/action/action';
+import { errorMessage } from '../toster';
+import { ToastContainer } from 'react-toastify';
 
 function Registration() {
     const users = useSelector(state=>state.users);
@@ -27,17 +29,18 @@ function Registration() {
         if(users.length == 0){
             dispatch(registration_success(user))
             handleNavigate('/login')
+            
         }
-        users.map(user=>{
-            if(user.email != email){
-                dispatch(registration_success(user))
-                console.log('first')
-                handleNavigate('/login')
-            }else{
-                console.log('Already user exist with this email')
-                handleNavigate('/register')
-            }
-        })
+        const isExist = users.some(user=>user.email == email)
+
+        if(isExist){
+            handleNavigate('/register')
+            errorMessage("Already user exist with this email")
+        }else{
+            dispatch(registration_success(user))
+            handleNavigate('/login')
+            
+        }
     }
     const handleNavigate = (path)=>{
         navigate(path)
@@ -89,6 +92,7 @@ function Registration() {
                 <button type='submit' className='btn btn-dark'>Signup</button>
             </div>
         </form>
+        <ToastContainer />
     </div>
   )
 }
