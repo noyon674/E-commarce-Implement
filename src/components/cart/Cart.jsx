@@ -4,12 +4,13 @@ import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux'
 import { RxCross1 } from "react-icons/rx";
 import { Card } from 'react-bootstrap';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import './cart.scss'
 import { 
     decrease_quantity, 
     delete_from_cart, 
     increase_quantity } from '../../redux/action/action';
+import { errorMessage, successMessage } from '../toster';
 
 
 function Cart() {
@@ -26,20 +27,10 @@ function Cart() {
 
     const handleDelete = (id)=>{
         dispatch(delete_from_cart(id))
-        toast.error('Removed item!', {
-            position: "top-right",
-            autoClose: 2000,
-            closeOnClick: true,
-            theme: "colored",
-            });
+        errorMessage('Item removed successfully!')
     }
     const placeOrder = ()=>{
-        toast.success('Order Placed successfully!', {
-            position: "top-right",
-            autoClose: 2000,
-            closeOnClick: true,
-            theme: "colored",
-            });
+        successMessage('Order placed successfully!')
     }
     let sum=0
     const calbil =(totalCost)=>{

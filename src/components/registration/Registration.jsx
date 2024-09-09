@@ -24,9 +24,14 @@ function Registration() {
     }
     const handleSubmit = (e)=>{
         e.preventDefault();
+        if(users.length == 0){
+            dispatch(registration_success(user))
+            handleNavigate('/login')
+        }
         users.map(user=>{
             if(user.email != email){
                 dispatch(registration_success(user))
+                console.log('first')
                 handleNavigate('/login')
             }else{
                 console.log('Already user exist with this email')
