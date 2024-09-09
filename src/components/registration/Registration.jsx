@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './registration.scss'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registration_success } from '../../redux/action/action';
 
 function Registration() {
+    const users = useSelector(state=>state.users);
+    console.log(users);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -22,9 +24,20 @@ function Registration() {
     }
     const handleSubmit = (e)=>{
         e.preventDefault();
-        dispatch(registration_success(user))
-        navigate('/login');
+        users.map(user=>{
+            if(user.email != email){
+                dispatch(registration_success(user))
+                handleNavigate('/login')
+            }else{
+                console.log('Already user exist with this email')
+                handleNavigate('/register')
+            }
+        })
     }
+    const handleNavigate = (path)=>{
+        navigate(path)
+    }
+
   return (
     <div className='registration'>
         <h4>welcome to</h4>

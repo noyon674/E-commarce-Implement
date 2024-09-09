@@ -30,7 +30,7 @@ function Navbar() {
             <a href="" onClick={handleLogout}>logout</a>
             <a href="/cart"><FaShoppingCart /></a>
             <span className='notify'>{totalItem}</span>
-            {/* <a href="" className='ms-2' onClick={handleReset}>reset</a> */}
+            <a href="" className='ms-2' onClick={handleReset}>reset</a>
         </div>
     </div>
   )
